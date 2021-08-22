@@ -1,0 +1,12 @@
+{
+  "name": "cordova-plugin-screen",
+  "version": "1.0.2",
+  "cordova": {
+    "id": "cordova-plugin-screen",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "description": "A starting point for a Cordova Plugin"
+}

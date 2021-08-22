@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-screen"
+    version="1.0.2">
+    <name>Cordova Screen Plugin</name>
+    <description></description>
+    <license>MIT</license>
+    <keywords>cordova,screen,size,screen info</keywords>
+
+    <js-module src="www/screen.js" name="Screen">
+      <clobbers target="Screen" />
+    </js-module>
+
+    <!-- android -->
+    <platform name="android">
+      <config-file target="res/xml/config.xml" parent="/*">
+        <feature name="Screen">
+          <param name="android-package" value="org.apache.cordova.screen.Screen" />
+          <param name="onload" value="true" />
+        </feature>
+      </config-file>
+
+      <source-file src="src/android/Screen.java" target-dir="src/org/apache/cordova/screen" />
+    </platform>
+
+    <!-- ios -->
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="Screen">
+                <param name="ios-package" value="Screen"/>
+            </feature>
+        </config-file>
+        <source-file src="src/ios/Screen.swift" />
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+    </platform>
+</plugin>
