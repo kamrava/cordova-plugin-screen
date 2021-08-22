@@ -8,5 +8,5 @@
       "ios"
     ]
   },
-  "description": "A starting point for a Cordova Plugin"
+  "description": "Get device screen size information"
 }

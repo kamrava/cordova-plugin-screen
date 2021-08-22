@@ -92,4 +92,5 @@ Screen.usableScreenHeight( height => {
 ```
 
 ### Author
+
 Hamed Kamrava
