@@ -19,6 +19,7 @@ function onDeviceReady() {
 
     cordova plugin add cordova-plugin-screen
 or
+
     cordova plugin add https://github.com/kamrava/cordova-plugin-screen.git
 
 
@@ -89,3 +90,6 @@ Screen.usableScreenHeight( height => {
 
 ...
 ```
+
+### Author
+Hamed Kamrava
