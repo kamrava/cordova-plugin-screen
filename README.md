@@ -18,6 +18,9 @@ function onDeviceReady() {
 ## Installation
 
     cordova plugin add cordova-plugin-screen
+or
+    cordova plugin add https://github.com/kamrava/cordova-plugin-screen.git
+
 
 ## Properties
 
@@ -76,9 +79,13 @@ Get the device statusbar height in pixels.
 ### Quick Example
 
 ```js
-var device_screen_height = Screen.height;
+Screen.usableScreenHeight( height => {
+  var device_screen_height = height;
+});
 
-var device_screen_usable_height = Screen.usableScreenHeight;
+Screen.usableScreenHeight( height => {
+  var device_screen_usable_height = height
+});
 
 ...
 ```
