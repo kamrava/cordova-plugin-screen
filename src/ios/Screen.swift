@@ -4,62 +4,61 @@ import UIKit
 @objc(Screen)
 public class Screen : CDVPlugin {
   @objc
-  func sayHello(_ command: CDVInvokedUrlCommand) {
-    let echo = command.argument(at: 0) as! String?
-    let respo = "Hello Dear " + echo!
-    let pluginResult:CDVPluginResult
+  func getScreenInfo(_ command: CDVInvokedUrlCommand) {
+    do {
+      let messageDictionary : [AnyHashable: Any] = [
+        "width": self.getWidth(),
+        "height": self.getHeight(),
+        "widthRaw": self.getWidthRaw(),
+        "heightRaw": self.getHeightRaw(),
+        "usableHeight": self.getUsableHeight(),
+        "navbarHeight": self.getNavbarHeight(),
+      ]
 
-    if echo != nil && echo!.count > 0 {
-        pluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: respo)
-    } else {
-        pluginResult = CDVPluginResult.init(status: CDVCommandStatus_ERROR)
+      let pluginResult:CDVPluginResult
+      pluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: messageDictionary)
+      self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
+    } catch {
+      print("JSON serialization failed: ", error)
     }
-
-    self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
   }
 
   @objc
-  func sendResponse(command: CDVInvokedUrlCommand, response: Int) {
-    let pluginResult:CDVPluginResult
-    pluginResult = CDVPluginResult.init(status: CDVCommandStatus_OK, messageAs: response)
-    self.commandDelegate.send(pluginResult, callbackId: command.callbackId)
-  }
-
-  @objc
-  func height(_ command: CDVInvokedUrlCommand) {
+  func getHeight() -> Int {
     let navbarHeight = Int(UIApplication.shared.statusBarFrame.height)
     let height = Int(UIScreen.main.bounds.height) - navbarHeight
-
-    self.sendResponse(command: command, response: height)
+    return height
   }
 
   @objc
-  func usableScreenHeight(_ command: CDVInvokedUrlCommand) {
+  func getUsableHeight() -> Int {
     let navbarHeight = Int(UIApplication.shared.statusBarFrame.height)
     let height = Int(UIScreen.main.bounds.height) - navbarHeight
-
-    self.sendResponse(command: command, response: height)
+    return height
   }
 
   @objc
-  func heightRaw(_ command: CDVInvokedUrlCommand) {
+  func getHeightRaw() -> Int {
     let height = Int(UIScreen.main.bounds.height)
-
-    self.sendResponse(command: command, response: height)
+    return height
   }
 
   @objc
-  func width(_ command: CDVInvokedUrlCommand) {
+  func getWidth() -> Int {
     let width = Int(UIScreen.main.bounds.width)
-
-    self.sendResponse(command: command, response: width)
+    return width
   }
 
   @objc
-  func navbarHeight(_ command: CDVInvokedUrlCommand) {
-    let navbarHeight = Int(UIApplication.shared.statusBarFrame.height)
+  func getWidthRaw() -> Int {
+    let width = Int(UIScreen.main.bounds.width)
+    return width
+  }
 
-    self.sendResponse(command: command, response: navbarHeight)
+  @objc
+  func getNavbarHeight() -> Int {
+    let navbarHeight = Int(UIApplication.shared.statusBarFrame.height)
+    return navbarHeight
   }
 
 }

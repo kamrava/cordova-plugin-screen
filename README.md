@@ -26,12 +26,12 @@ or
 ## Properties
 
 - Screen.height
-- Screen.heightRaw
 - Screen.width
+- Screen.heightRaw
 - Screen.widthRaw
 - Screen.navbarHeight
+- Screen.usableHeight
 - Screen.statusbarHeight
-- Screen.usableScreenHeight
 
 ## Screen.height
 
@@ -51,7 +51,7 @@ Get the screen width size of the device in pixels.
 - Android
 - iOS
 
-## Screen.usableScreenHeight
+## Screen.usableHeight
 
 Get the screen height size (without navbar and statusbar) of the device in pixels.
 
@@ -80,13 +80,9 @@ Get the device statusbar height in pixels.
 ### Quick Example
 
 ```js
-Screen.usableScreenHeight( height => {
-  var device_screen_height = height;
-});
+var device_screen_height_ = Screen.height;
 
-Screen.usableScreenHeight( height => {
-  var device_screen_usable_height = height
-});
+var device_screen_usable_height = Screen.usableHeight;
 
 ...
 ```
